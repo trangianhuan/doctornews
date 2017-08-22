@@ -3,8 +3,13 @@
 @section('style')
 @endsection
 
+@section('content_title')
+    Admin page
+@stop
+
 @section('content')
-    <div class="">
-        <h3>Welcome Admin</h3>
+    <div class="box-body">
+        Welcome Admin
     </div>
+
 @stop

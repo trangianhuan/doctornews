@@ -1,35 +1,41 @@
 <div class="content-wrapper" style="min-height: 1126px;">
     <!-- Content Header (Page header) -->
     <section class="content-header">
+    @if ($errors->any() || session()->has('message') || session()->has('error'))
+        <div class="alert" id="alert-message">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            @foreach ($errors->all() as $message)
+                <p>{{ $message }}</p>
+            @endforeach
+            @if (session()->has('message'))
+                <p>{{ session('message') }}</p>
+            @endif
+            @if (session()->has('error'))
+                <p>{{ session('error') }}</p>
+            @endif
+        </div>
+    @endif
       <h1>
-        Blank page
-        <small>it all starts here</small>
+        @yield('content_title')
+        <!-- <small>it all starts here</small> -->
       </h1>
-      <ol class="breadcrumb">
+      <!-- <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
         <li><a href="#">Examples</a></li>
         <li class="active">Blank page</li>
-      </ol>
+      </ol> -->
     </section>
 
     <!-- Main content -->
     <section class="content">
-
-      <!-- Default box -->
-      <div class="box collapsed-box">
-        <div class="box-header with-border">
-          <h3 class="box-title">Title</h3>
-
-          <div class="box-tools pull-right">
-            <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="" data-original-title="Collapse">
-              <i class="fa fa-plus"></i></button>
-            <button type="button" class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="" data-original-title="Remove">
-              <i class="fa fa-times"></i></button>
-          </div>
-        </div>
-        <div class="box-body" style="display: none;">
-          Start creating your amazing application!
-        </div>
+    <!-- Default box -->
+      <div class="box">
+        <!-- <div class="box-header with-border">
+          <h3 class="box-title">@yield('content_title')</h3>
+        </div> -->
+          @yield('content')
         <!-- /.box-body -->
         <div class="box-footer" style="display: none;">
           Footer
@@ -37,7 +43,6 @@
         <!-- /.box-footer-->
       </div>
       <!-- /.box -->
-
     </section>
     <!-- /.content -->
   </div>
